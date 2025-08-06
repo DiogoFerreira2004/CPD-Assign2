@@ -1,141 +1,153 @@
-# Sistema de Chat Cliente-Servidor Distribuído em Java
+# FEUP - Parallel and Distributed Computing - 2024/2025
+> Curricular Unit: CPD - [Computação Paralela e Distribuída](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=541893)
+## 3rd Year - 1st Semester Project
+### Brief description:
+This project implements a distributed client-server chat system in Java, designed to provide real-time communication capabilities with advanced features including AI-powered chat rooms. Built using Java SE 21 with TCP/SSL communication and Docker integration for Ollama AI services, it offers a robust and secure messaging platform that supports concurrent users and fault-tolerant operations.
 
-## Índice
-- [Descrição](#descrição-do-projeto)
-- [Requisitos](#requisitos-do-sistema)
-- [Arquitetura](#arquitetura-do-sistema)
-- [Funcionalidades](#funcionalidades)
-- [Instalação e Execução](#instruções-de-instalação-e-execução)
-- [Utilização](#utilização-do-cliente)
-- [Características Técnicas](#características-técnicas-implementadas)
-- [Protocolo de Comunicação](#protocolo-de-comunicação)
-- [Autores](#autores)
+The system enables users to authenticate, create and join chat rooms, exchange messages in real-time, and interact with AI-powered chat assistants. Key features include automatic reconnection mechanisms, session persistence with secure token management, SSL/TLS encrypted communication, and concurrent processing using Java Virtual Threads. The platform also incorporates comprehensive security measures with password hashing, input validation, and heartbeat-based connection monitoring to ensure reliable and secure communication.
 
-## Descrição do Projeto
+I hope you find it useful!
 
-Este projeto implementa um sistema de chat distribuído cliente-servidor em Java, utilizando comunicação TCP com suporte a SSL/TLS. O sistema permite que os utilizadores se autentiquem, enviem e recebam mensagens em tempo real em salas de chat, e inclui funcionalidades avançadas como salas de chat potenciadas por Inteligência Artificial através da integração com Ollama.
-Este projeto foi desenvolvido como parte da unidade curricular de Computação Paralela e Distribuída (CPD), 2024/2025.
+---
 
-## Requisitos do Sistema
+# Distributed Client-Server Chat System in Java
 
-- Java SE 21 ou superior
-- Docker (para execução do Ollama)
-- 4GB de RAM (mínimo)
-- 100MB de espaço em disco para a aplicação
-- 4GB de espaço em disco adicional para o modelo Ollama
+## Table of Contents
+- [Project Description](#project-description)
+- [System Requirements](#system-requirements)
+- [System Architecture](#system-architecture)
+- [Features](#features)
+- [Installation and Execution](#installation-and-execution-instructions)
+- [Client Usage](#client-usage)
+- [Technical Characteristics](#implemented-technical-characteristics)
+- [Communication Protocol](#communication-protocol)
+- [Authors](#authors)
 
-## Arquitetura do Sistema
+## Project Description
 
-O sistema utiliza uma arquitetura cliente-servidor onde:
+This project implements a distributed client-server chat system in Java, using TCP communication with SSL/TLS support. The system allows users to authenticate, send and receive real-time messages in chat rooms, and includes advanced features such as AI-powered chat rooms through integration with Ollama.
+This project was developed as part of the Parallel and Distributed Computing (CPD) course, 2024/2025.
 
-1. **Servidor de Chat** - Gere a autenticação de utilizadores, criação e gestão de salas, e encaminhamento de mensagens.
-2. **Cliente de Chat** - Interface para autenticação, listagem e associação a salas, e troca de mensagens.
-3. **Conector IA** - Integração com o Ollama para salas com funcionalidades de IA.
+## System Requirements
 
-### Componentes Principais:
+- Java SE 21 or higher
+- Docker (for Ollama execution)
+- 4GB RAM (minimum)
+- 100MB disk space for the application
+- 4GB additional disk space for the Ollama model
 
-| Componente | Descrição |
-|------------|-----------|
-| `ChatServer` | Gestor principal do servidor que aceita conexões e orquestra os outros componentes. |
-| `ChatClient` | Aplicação cliente que conecta ao servidor e fornece interface de utilizador. |
-| `UserManager` | Gestão de autenticação e registo de utilizadores. |
-| `RoomManager` | Gestão da criação e utilização de salas de chat. |
-| `AIConnector` | Interface com o modelo de linguagem Ollama para salas IA. |
-| `Room` | Representa uma sala de chat e gere as mensagens e utilizadores conectados. |
-| `ClientHandler` | Processa mensagens de um cliente específico no servidor. |
-| `UserSession` | Gere as sessões dos utilizadores com tokens e expiração. |
+## System Architecture
 
-## Funcionalidades
+The system uses a client-server architecture where:
 
-- Autenticação e registo de utilizadores
-- Criação e gestão de salas de chat
-- Comunicação em tempo real entre utilizadores
-- Salas de chat potenciadas por IA (com integração Ollama)
-- Tolerância a falhas (reconexão automática, persistência de sessão)
-- Segurança básica (armazenamento de palavras-passe com hash e salt)
-- Processamento concorrente (utilizando Java Virtual Threads)
-- Comunicação segura com SSL/TLS
-- Deteção de desconexões via heartbeats
-- Sistema de filas de mensagens para evitar problemas com clientes lentos
+1. **Chat Server** - Manages user authentication, room creation and management, and message routing.
+2. **Chat Client** - Interface for authentication, room listing and joining, and message exchange.
+3. **AI Connector** - Integration with Ollama for AI-enhanced rooms.
 
-## Instruções de Instalação e Execução
+### Main Components:
 
-### Pré-requisitos
+| Component | Description |
+|-----------|-------------|
+| `ChatServer` | Main server manager that accepts connections and orchestrates other components. |
+| `ChatClient` | Client application that connects to the server and provides user interface. |
+| `UserManager` | User authentication and registration management. |
+| `RoomManager` | Chat room creation and usage management. |
+| `AIConnector` | Interface with the Ollama language model for AI rooms. |
+| `Room` | Represents a chat room and manages messages and connected users. |
+| `ClientHandler` | Processes messages from a specific client on the server. |
+| `UserSession` | Manages user sessions with tokens and expiration. |
 
-Ter instalado o:
-- JDK 21 ou superior
-- Docker (para o Ollama)
+## Features
+
+- User authentication and registration
+- Chat room creation and management
+- Real-time communication between users
+- AI-powered chat rooms (with Ollama integration)
+- Fault tolerance (automatic reconnection, session persistence)
+- Basic security (password storage with hash and salt)
+- Concurrent processing (using Java Virtual Threads)
+- Secure communication with SSL/TLS
+- Disconnection detection via heartbeats
+- Message queue system to avoid issues with slow clients
+
+## Installation and Execution Instructions
+
+### Prerequisites
+
+Must have installed:
+- JDK 21 or higher
+- Docker (for Ollama)
 
 ### Download
 
-Clonar o repositório:
+Clone the repository:
 
 ```bash
 git clone https://gitlab.up.pt/classes/cpd/2425/t01/g12.git
 cd g12
 ```
 
-### Compilação
+### Compilation
 
-Para compilar o código, executar:
+To compile the code, run:
 
 ```bash
 javac *.java
 ```
 
-### Iniciar o Servidor
+### Start the Server
 
-Para iniciar o servidor, executar:
+To start the server, run:
 
 ```bash
 java ChatServer
 ```
 
-O servidor inicia por predefinição na porta 8989 se nenhuma porta for especificada.
+The server starts by default on port 8989 if no port is specified.
 
-### Iniciar o Cliente
+### Start the Client
 
-Para iniciar um cliente, abrir um novo terminal e executar:
+To start a client, open a new terminal and run:
 
 ```bash
 java ChatClient
 ```
 
-Por predefinição, conecta a localhost:8989 se nenhum host/porta for especificado.
+By default, connects to localhost:8989 if no host/port is specified.
 
-### Iniciar o Ollama (necessário para salas IA)
+### Start Ollama (required for AI rooms)
 
-Para iniciar o Ollama, executar:
+To start Ollama, run:
 
 ```bash
 chmod +x start-ollama.sh
 ./start-ollama.sh
 ```
 
-Este script verifica se o Docker está instalado, inicia um contentor Ollama, e descarrega o modelo `llama3` necessário para as salas de IA.
+This script checks if Docker is installed, starts an Ollama container, and downloads the `llama3` model needed for AI rooms.
 
-### Para estabelecer a conexão segura
+### To establish secure connection
 
-Tornar o script executável:
+Make the script executable:
 ```bash
 chmod +x generate-ssl-keys.sh
 ```
 
-Executar o script:
+Run the script:
 ```bash
 ./generate-ssl-keys.sh
 ```
 
-## Utilização do Cliente
+## Client Usage
 
-### Autenticação
+### Authentication
 
-Ao iniciar o cliente, ser-lhe-á apresentado um menu de autenticação:
+When starting the client, you will be presented with an authentication menu:
 
-1. Login - Para utilizadores existentes
-2. Registo - Para criar uma nova conta
+1. Login - For existing users
+2. Register - To create a new account
 
-Os utilizadores predefinidos são:
+The default users are:
 - Username: `diogo`, Password: `1234`
 - Username: `alvaro`, Password: `1234`
 - Username: `tomas`, Password: `1234`
@@ -143,113 +155,113 @@ Os utilizadores predefinidos são:
 - Username: `bob`, Password: `password2`
 - Username: `eve`, Password: `password3`
 
-### Comandos Disponíveis
+### Available Commands
 
-Após autenticação, estão disponíveis os seguintes comandos:
+After authentication, the following commands are available:
 
-| Comando | Descrição |
-|---------|-----------|
-| `/rooms` | Lista todas as salas disponíveis |
-| `/join <sala>` | Entra numa sala existente |
-| `/create <sala>` | Cria uma nova sala normal |
-| `/create_ai <sala>\|<prompt>` | Cria uma sala com IA, onde o prompt define o comportamento da IA |
-| `/leave` | Sai da sala atual |
-| `/logout` | Termina a sessão |
-| `/test_disconnect` | (Apenas para testes) Simula uma desconexão para testar a reconexão automática |
+| Command | Description |
+|---------|-------------|
+| `/rooms` | List all available rooms |
+| `/join <room>` | Join an existing room |
+| `/create <room>` | Create a new normal room |
+| `/create_ai <room>\|<prompt>` | Create an AI room, where the prompt defines the AI behavior |
+| `/leave` | Leave the current room |
+| `/logout` | End the session |
+| `/test_disconnect` | (Testing only) Simulate a disconnection to test automatic reconnection |
 
-### Exemplos de Comandos
+### Command Examples
 
 ```
 /create my_room
-/create_ai ai_chat|Atua como um especialista em Java e ajuda a responder a questões sobre programação
+/create_ai ai_chat|Act as a Java expert and help answer programming questions
 /join my_room
-Olá a todos!
+Hello everyone!
 /leave
 /logout
 ```
 
-### Envio de Mensagens
+### Sending Messages
 
-Para enviar uma mensagem, basta digitar o texto e pressionar Enter quando estiver dentro de uma sala.
+To send a message, simply type the text and press Enter when inside a room.
 
-## Características Técnicas Implementadas
+## Implemented Technical Characteristics
 
-### Concorrência
+### Concurrency
 
-O sistema implementa concorrência através de:
-- Utilização de Java Virtual Threads para minimizar a sobrecarga
-- Bloqueios de leitura/escrita (`java.util.concurrent.locks.ReadWriteLock`) para acesso seguro a estruturas de dados partilhadas
-- Implementações próprias de sincronização sem recorrer a coleções thread-safe de `java.util.concurrent`
-- Filas de mensagens para evitar que clientes lentos afetem o desempenho global
-- Processamento assíncrono de mensagens e comandos
+The system implements concurrency through:
+- Use of Java Virtual Threads to minimize overhead
+- Read/write locks (`java.util.concurrent.locks.ReadWriteLock`) for safe access to shared data structures
+- Custom synchronization implementations without relying on thread-safe collections from `java.util.concurrent`
+- Message queues to prevent slow clients from affecting global performance
+- Asynchronous processing of messages and commands
 
-### Tolerância a Falhas
+### Fault Tolerance
 
-O sistema implementa mecanismos de tolerância a falhas:
-- Reconexão automática do cliente em caso de falha na ligação
-- Tokens de sessão para manter o estado do utilizador após reconexão
-- Expiração de tokens para melhorar a segurança
-- Heartbeats para deteção de desconexões
-- Persistência de dados de utilizadores e sessões
-- Backoff exponencial nas tentativas de reconexão
+The system implements fault tolerance mechanisms:
+- Automatic client reconnection in case of connection failure
+- Session tokens to maintain user state after reconnection
+- Token expiration to improve security
+- Heartbeats for disconnection detection
+- User data and session persistence
+- Exponential backoff in reconnection attempts
 
-### Segurança
+### Security
 
-- Palavras-passe armazenadas com hash SHA-256 e salt
-- Tokens de sessão gerados aleatoriamente
-- Validação de entrada para prevenir injeções
-- Comunicação encriptada com SSL/TLS
-- Gestão segura de tokens de sessão
+- Passwords stored with SHA-256 hash and salt
+- Randomly generated session tokens
+- Input validation to prevent injections
+- Encrypted communication with SSL/TLS
+- Secure session token management
 
-### Desempenho
+### Performance
 
-- Cache de respostas da IA para melhorar o desempenho
-- Processamento assíncrono de mensagens
-- Limite de histórico para evitar o consumo excessivo de memória
-- Otimização de consultas ao serviço Ollama
+- AI response caching to improve performance
+- Asynchronous message processing
+- History limit to avoid excessive memory consumption
+- Optimization of Ollama service queries
 
-## Protocolo de Comunicação
+## Communication Protocol
 
-O sistema utiliza um protocolo baseado em texto para comunicação:
+The system uses a text-based protocol for communication:
 
-### Comandos do Cliente para o Servidor
+### Client to Server Commands
 
-| Comando | Formato | Descrição |
-|---------|---------|-----------|
-| Login | `LOGIN <utilizador> <palavra-passe>` | Autenticação de utilizador |
-| Registo | `REGISTER <utilizador> <palavra-passe>` | Registo de novo utilizador |
-| Reconexão | `RECONNECT <token> [sala]` | Reconexão com token de sessão e opcionalmente a sala anterior |
-| Listar salas | `LIST_ROOMS` | Solicita lista de salas disponíveis |
-| Entrar numa sala | `JOIN_ROOM <sala>` | Entrada numa sala existente |
-| Criar sala | `CREATE_ROOM <sala>` | Criação de sala normal |
-| Criar sala IA | `CREATE_AI_ROOM <sala>\|<prompt>` | Criação de sala com IA |
-| Enviar mensagem | `MESSAGE <texto>` | Envio de mensagem para a sala atual |
-| Sair da sala | `LEAVE_ROOM` | Saída da sala atual |
-| Terminar sessão | `LOGOUT` | Termina a sessão atual |
-| Resposta Heartbeat | `HEARTBEAT_ACK` | Resposta ao heartbeat do servidor |
+| Command | Format | Description |
+|---------|--------|-------------|
+| Login | `LOGIN <user> <password>` | User authentication |
+| Register | `REGISTER <user> <password>` | New user registration |
+| Reconnect | `RECONNECT <token> [room]` | Reconnection with session token and optionally the previous room |
+| List rooms | `LIST_ROOMS` | Request list of available rooms |
+| Join room | `JOIN_ROOM <room>` | Join an existing room |
+| Create room | `CREATE_ROOM <room>` | Create a normal room |
+| Create AI room | `CREATE_AI_ROOM <room>\|<prompt>` | Create an AI room |
+| Send message | `MESSAGE <text>` | Send message to current room |
+| Leave room | `LEAVE_ROOM` | Leave current room |
+| End session | `LOGOUT` | End current session |
+| Heartbeat response | `HEARTBEAT_ACK` | Response to server heartbeat |
 
-### Respostas do Servidor para o Cliente
+### Server to Client Responses
 
-| Resposta | Formato | Descrição |
-|----------|---------|-----------|
-| Autenticação necessária | `AUTH_REQUIRED` | Solicita autenticação ao cliente |
-| Autenticação sucedida | `AUTH_SUCCESS <utilizador> <token>` | Autenticação bem-sucedida |
-| Autenticação falhou | `AUTH_FAILED` | Autenticação falhada |
-| Registo sucedido | `REGISTER_SUCCESS` | Registo bem-sucedido |
-| Registo falhou | `REGISTER_FAILED <motivo>` | Registo falhado |
-| Reconexão sucedida | `RECONNECT_SUCCESS <utilizador> [sala]` | Reconexão bem-sucedida, opcionalmente com a sala |
-| Sessão expirada | `SESSION_EXPIRED` | Token de sessão expirado |
-| Lista de salas | `ROOM_LIST <salas>` | Lista de salas disponíveis |
-| Entrada na sala | `JOINED_ROOM <sala>` | Entrada na sala bem-sucedida |
-| Saída da sala | `LEFT_ROOM` | Saída da sala |
-| Sala criada | `ROOM_CREATED <sala>` | Sala criada com sucesso |
-| Sala IA criada | `AI_ROOM_CREATED <sala>` | Sala IA criada com sucesso |
-| Mensagem da sala | `ROOM_MESSAGE <mensagem>` | Mensagem recebida numa sala |
-| Erro | `ERROR <motivo>` | Erro durante processamento |
-| Sessão terminada | `LOGGED_OUT` | Saída do sistema |
-| Verificação conexão | `HEARTBEAT` | Verificação de conexão |
+| Response | Format | Description |
+|----------|--------|-------------|
+| Authentication required | `AUTH_REQUIRED` | Request authentication from client |
+| Authentication successful | `AUTH_SUCCESS <user> <token>` | Successful authentication |
+| Authentication failed | `AUTH_FAILED` | Failed authentication |
+| Registration successful | `REGISTER_SUCCESS` | Successful registration |
+| Registration failed | `REGISTER_FAILED <reason>` | Failed registration |
+| Reconnection successful | `RECONNECT_SUCCESS <user> [room]` | Successful reconnection, optionally with room |
+| Session expired | `SESSION_EXPIRED` | Session token expired |
+| Room list | `ROOM_LIST <rooms>` | List of available rooms |
+| Joined room | `JOINED_ROOM <room>` | Successful room entry |
+| Left room | `LEFT_ROOM` | Left room |
+| Room created | `ROOM_CREATED <room>` | Room created successfully |
+| AI room created | `AI_ROOM_CREATED <room>` | AI room created successfully |
+| Room message | `ROOM_MESSAGE <message>` | Message received in room |
+| Error | `ERROR <reason>` | Error during processing |
+| Session ended | `LOGGED_OUT` | System logout |
+| Connection check | `HEARTBEAT` | Connection verification |
 
-## Autores
+## Authors
 
 - Diogo Miguel Fernandes Ferreira (up202205295@up.pt)
 - Álvaro Luís Dias Amaral Alvim Torres (up202208954@up.pt)

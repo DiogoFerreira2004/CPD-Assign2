@@ -1,6 +1,6 @@
 # FEUP - Parallel and Distributed Computing - 2024/2025
 > Curricular Unit: CPD - [Computação Paralela e Distribuída](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=541893)
-## 3rd Year - 1st Semester Project
+## 3rd Year - 2nd Semester 2nd Project
 ### Brief description:
 This project implements a distributed client-server chat system in Java, designed to provide real-time communication capabilities with advanced features including AI-powered chat rooms. Built using Java SE 21 with TCP/SSL communication and Docker integration for Ollama AI services, it offers a robust and secure messaging platform that supports concurrent users and fault-tolerant operations.
 
